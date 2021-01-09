@@ -20,6 +20,14 @@ const PROJECTS: {
   },
 };
 
+jest.mock(
+  "../secrets/serviceAccount.json",
+  () => {
+    return {};
+  },
+  { virtual: true }
+);
+
 jest.mock("firebase-admin", () => {
   const on = jest.fn((event, callback) => {
     const snapshot = Object.keys(PROJECTS).map((key) => {
