@@ -1,0 +1,31 @@
+{
+  "name": "portfolio-react-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "npx prettier --write .",
+    "prestart": "npm run build",
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts",
+    "build": "tsc -p .",
+    "pretest": "npm run build",
+    "test": "jest --roots=./dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^9.4.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.9",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.12",
+    "jest": "^26.6.3",
+    "prettier": "2.2.1",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.2"
+  }
+}

@@ -1,0 +1,5 @@
+# The build folder
+dist/
+
+# The secrets folder
+secrets/
