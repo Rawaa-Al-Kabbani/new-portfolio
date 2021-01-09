@@ -1,0 +1,14 @@
+name: Test runner
+on: [pull_request, push]
+jobs:
+  run-tests:
+    name: test runner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - name: Run tests
+        working-directory: ./server
+        run: |
+          npm install
+          npm run test
