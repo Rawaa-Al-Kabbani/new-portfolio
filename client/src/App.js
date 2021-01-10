@@ -3,21 +3,24 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import "./assets/scss/material-kit-react.scss?v=1.9.0";
+import defaultImage from "./assets/img/open-source.jpg";
 
 function App() {
   const [projects, setProjects] = useState([]);
   function getProjects() {
-    return fetch("/api/getProjects")
-      .then((response) => response.json())
-      .then((items) => {
-        return items;
-      });
+    return fetch("/api/getProjects").then((response) => response.json());
   }
 
   useEffect(() => {
     const getData = async () => {
       const fetchedProjects = await getProjects();
-      setProjects(fetchedProjects);
+      const newProjects = fetchedProjects.map((project) => {
+        if (!project.image) {
+          project.image = defaultImage;
+        }
+        return project;
+      });
+      setProjects(newProjects);
     };
     getData();
   }, []);
