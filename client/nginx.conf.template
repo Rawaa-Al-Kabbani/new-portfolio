@@ -1,6 +1,8 @@
 proxy_ssl_server_name on;
 resolver $RESOLVER;
 
+proxy_cache_path /data/nginx/cache keys_zone=projects_cache:10m;
+
 server {
   listen $PORT;
   location /api {
@@ -9,6 +11,11 @@ server {
     proxy_set_header Host $API_HOST;
     proxy_pass $API_BASE_URL$request_uri;
     proxy_ssl_name $API_HOST;
+
+    proxy_cache projects_cache;
+    proxy_cache_background_update on;
+    proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
+    proxy_cache_valid 200 1d;
   }
   location / {
     root   /usr/share/nginx/html;

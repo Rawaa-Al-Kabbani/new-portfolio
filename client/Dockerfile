@@ -5,6 +5,7 @@ RUN npm install
 RUN npm run build
 
 FROM nginx:1.15.9-alpine
+WORKDIR /data/nginx/cache
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder /app/build .
