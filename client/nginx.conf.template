@@ -1,0 +1,18 @@
+proxy_ssl_server_name on;
+resolver $RESOLVER;
+
+server {
+  listen $PORT;
+  location /api {
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $API_HOST;
+    proxy_pass $API_BASE_URL$request_uri;
+    proxy_ssl_name $API_HOST;
+  }
+  location / {
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+    try_files $uri $uri/ /index.html =404;
+  }
+}

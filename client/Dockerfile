@@ -8,5 +8,5 @@ FROM nginx:1.15.9-alpine
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder /app/build .
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY nginx.conf.template /nginx.conf.template
+CMD /bin/sh -c "envsubst '\$API_BASE_URL \$API_HOST \$PORT \$RESOLVER' < /nginx.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
