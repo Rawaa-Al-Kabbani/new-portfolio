@@ -20,8 +20,10 @@ export default function About(props) {
       return (
         <div className={classes.description}>
           <p>
-            I am a very curious and creative person and I like to learn and experiment with new technologies all the time.
-            I am always motivated to extend my knowledge and improve myself both as a programmer and as a person.
+            I am a very curious and creative person and I like to learn and
+            experiment with new technologies all the time. I am always motivated
+            to extend my knowledge and improve myself both as a programmer and
+            as a person.
           </p>
         </div>
       );
